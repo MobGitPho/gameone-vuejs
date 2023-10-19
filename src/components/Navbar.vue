@@ -18,7 +18,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li v-for="nav in MyNav" :key="nav"><a  :href="nav.url" class="{{role}}" @click=" activ() " >{{nav.name}}</a></li>
+                    <li v-for="(nav, i) in MyNav" :key="i"><a  :href="nav.url" :class="{'active' : i === pindex}" @click=" activ(i) " >{{nav.name}}</a></li>
+       
                     <!--li><a href="">A propos</a></li>
                     <li><a href="">Contact</a></li>
                     <li><a href="">Evènement passés</a></li-->
@@ -38,23 +39,22 @@ export default {
         let role=ref ({
            act:'active',
         });
+        let pindex = ref(0);
         let MyNav= [
-            {name: 'Details de l\'évènement', role: role ,url:'#' },
+            {name: 'Details de l\'évènement', role: '' ,url:'#' },
             {name: 'A Propos', role:'',url:'#' },
             {name: 'Contact', role:'',url:'#' },
             {name: 'Evènement passés', role:'',url:'#' }
         ];
 
-        let activ = function (){
-            role.value = 'active';
-            console.log('role || activ',role.value)
+        let activ = function (p){
+            pindex.value = p
         }
-        //console.log('MyNav',MyNav)
-        console.log('role',role.value)
-        console.log('roleT',(role.value= !role.value))
+        
         return {
             
             MyNav,
+            pindex,
             activ,
             role,
         }
