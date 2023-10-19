@@ -198,6 +198,9 @@ export default {
             Modalbox.value = 1;
             var lk = window.location.href;
              window.location.href = "" + lk + "";
+             location.reload(); 
+             //let op = document.querySelector('modal-backdrop in');
+            
         }
 
      
